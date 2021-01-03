@@ -3,6 +3,7 @@ import {
   KeyboardArrowDownRounded,
   KeyboardArrowUpRounded,
 } from "@material-ui/icons";
+import Link from "next/link";
 import React, { useState } from "react";
 import styles from "./CountryTable.module.css";
 
@@ -63,7 +64,7 @@ function CountryTable({ countries }) {
   return (
     <div>
       <div className={styles.heading}>
-        <button className={styles.heading_name}>
+        <button className={styles.heading_name} onClick={() =>setValueAndDirection('population')}>
           <div>Name</div>
           <SortArrow />
         </button>
@@ -75,10 +76,11 @@ function CountryTable({ countries }) {
       </div>
 
       {orderedCountry.map((country) => (
+        <Link href={`/country/${country.alpha3Code}`}>
         <div className={styles.row}>
           <div className={styles.name}>{country.name}</div>
           <div className={styles.population}>{country.population}</div>
-        </div>
+        </div></Link>
       ))}
     </div>
   );
